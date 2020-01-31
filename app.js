@@ -5,7 +5,8 @@ const helmet = require('helmet');
 const MOVIE_DB = require('./small-database');
 
 const app = express()
-app.use(morgan('dev'));
+const morganSettings = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
+app.use(morgan(morganSettings));
 app.use(function validateBearerToken(req, res, next) {
   const apiToken = process.env.API_TOKEN
   const authToken = req.get('Authorization')
