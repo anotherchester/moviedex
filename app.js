@@ -1,9 +1,11 @@
-const express = require('express')
-const morgan = require('morgan')
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const helmet = require('helmet');
 const MOVIE_DB = require('./small-database');
 
 const app = express()
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 app.use(function validateBearerToken(req, res, next) {
   const apiToken = process.env.API_TOKEN
   const authToken = req.get('Authorization')
@@ -11,7 +13,9 @@ app.use(function validateBearerToken(req, res, next) {
     return res.status(401).json({ error: 'Unauthorized request' })
   }
   next()
-})
+});
+app.use(cors());
+app.use(helmet());
 
 function validateReq(req, res, next) {
   const stringRegex = new RegExp("^[a-zA-Z]+$");
