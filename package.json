@@ -16,13 +16,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "helmet": "^3.21.2",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
-    "express": "^4.17.1",
     "nodemon": "^2.0.2"
   }
 }
