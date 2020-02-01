@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
-const MOVIE_DB = require('./small-database');
+const MOVIE_DB = process.env.NODE_ENV === 'production' ? require('./movie-database') : require('./small-database');
 
 const app = express()
 const morganSettings = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
